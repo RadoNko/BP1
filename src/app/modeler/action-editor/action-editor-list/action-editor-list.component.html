@@ -1,0 +1,43 @@
+<mat-accordion multi="true" class="panel-area-padding">
+  <ng-template ngFor let-action [ngForOf]="leafNode.actions" let-i="index">
+    <mat-expansion-panel (closed)="setHeightOnClose(i, action)" mwlResizable
+                         id="{{action.event + '_' + action.phase + '_' + i}}"
+                         [resizeCursorPrecision]="10"
+                         [resizeEdges]="{ bottom: true }"
+                         (resizing)="onResizeEvent($event, action.event + '_' + action.phase + '_' + i)">
+      <mat-expansion-panel-header>
+        action
+      </mat-expansion-panel-header>
+      <nab-action-editor [action]="action" [name]="action.event + '_' + action.phase + '_' + i"></nab-action-editor>
+      <mat-action-row>
+        <div *ngIf="action.type === 'TRANSITION'" fxLayout="row" fxLayoutAlign="start center">
+          <mat-form-field class="margin-left-8px">
+            <mat-label>event</mat-label>
+            <mat-select [(value)]="action.event" (selectionChange)="actionTransitonEventsChanged(i)">
+              <mat-option *ngFor="let option of TRANSITION_EVENT_TYPES" value="{{option}}">{{option}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="action.type === 'TRANSITION'" fxLayout="row" fxLayoutAlign="start center">
+          <mat-form-field class="margin-left-8px">
+            <mat-label>phase</mat-label>
+            <mat-select [(value)]="action.phase" (selectionChange)="actionTransitonEventsChanged(i)">
+              <mat-option *ngFor="let option of PHASE_TYPES" value="{{option}}">{{option}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div *ngIf="action.type !== 'TRANSITION'" fxLayout="row" fxLayoutAlign="start center">
+          <mat-form-field class="margin-left-8px">
+            <mat-label>event</mat-label>
+            <mat-select [(value)]="action.event" (selectionChange)="actionDataEventsChanged(i)">
+              <mat-option *ngFor="let option of DATA_EVENT_TYPES" value="{{option}}">{{option}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <button mat-icon-button (click)="openDialog(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </ng-template>
+</mat-accordion>

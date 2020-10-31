@@ -1,0 +1,11 @@
+<div class="fill-all-space" fxLayout="row" fxLayoutAlign="start center">
+  <mat-label *ngIf="!showLabel.value">{{datafieldObject.title}}</mat-label>
+  <div>
+    <button style="margin-bottom: 10px" mat-button color="warn" disabled>
+      <mat-icon>file_upload</mat-icon>
+      {{datafieldObject.placeholder}}
+    </button>
+
+    <input type="file" id="fileUpload" name="fileUpload" [multiple]="false" style="display:none;"/>
+  </div>
+</div>

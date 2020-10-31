@@ -1,0 +1,159 @@
+<div class="form">
+  <mat-form-field class="full-width margin-html">
+    <input matInput type="number" [max]="maxOfCols" [min]="minOfCols" placeholder="Number of Cols"
+           [value]="numOfCols" (change)="changeCols($event)">
+  </mat-form-field>
+  <mat-error *ngIf="error">
+    Must be in range <strong>{{minOfCols}}</strong> <-> <strong>{{maxOfCols}}</strong>
+  </mat-error>
+
+  <!--  TRANSITION OFFSET MANAGEMENT  -->
+  <div>
+    <mat-form-field class="full-width margin-html">
+      <input matInput type="number" placeholder="Set transition offset"
+             [(ngModel)]="modelService.transitionOffset" (change)="notifyGridster()">
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <h3 *ngIf="isSomeGridsterFieldSelected()" class="full-width margin-html">
+    {{whichField()}}
+  </h3>
+
+  <div *ngIf="isSomeGridsterFieldSelected()">
+    <mat-form-field class="full-width margin-html">
+      <mat-label>Set field behavior</mat-label>
+      <mat-select [(value)]="gridsterObjectData.behavior" multiple>
+        <mat-option *ngFor="let opt of behaviorOptions" [value]="opt.key">
+          {{opt.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div *ngIf="isSomeGridsterFieldSelected()">
+    <mat-slide-toggle [(ngModel)]="gridsterObjectData.usesSplitTemplate" (change)="notifyGridster()" class="full-width margin-html">
+      Split template
+    </mat-slide-toggle>
+    <mat-form-field *ngIf="!isBoolean() && !isListOptionsDisplay() && !isFile() && !isFileList()" class="full-width margin-html">
+      <mat-label>Select style</mat-label>
+      <mat-select [(value)]="gridsterObjectData.materialAppearance" (selectionChange)="notifyGridster()">
+        <mat-option *ngFor="let opt of [{key: 'standard',value: 'Standard'},
+          {key: 'fill',value: 'Fill'}, {key: 'outline',value: 'Outline'}]" [value]="opt.key">
+          {{opt.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width" [ngClass]="{'margin-html': isBoolean() || isListOptionsDisplay() || isFile() || isFileList()}">
+      <input matInput type="text" placeholder="Set label"
+             [(ngModel)]="gridsterObjectData.title" (change)="notifyGridster()">
+    </mat-form-field>
+    <mat-form-field *ngIf="!isListOptionsDisplay()" class="full-width">
+      <input matInput type="text" placeholder="Set placeholder"
+             [(ngModel)]="gridsterObjectData.placeholder" (change)="notifyGridster()">
+    </mat-form-field>
+    <mat-form-field *ngIf="!isBoolean() && !isListOptionsDisplay() && !isFile() && !isFileList()" class="full-width">
+      <input matInput type="text" placeholder="Set description"
+             [(ngModel)]="gridsterObjectData.hint" (change)="notifyGridster()">
+    </mat-form-field>
+    <!--  VALUES  -->
+    <mat-form-field *ngIf="hasTextValue()" class="full-width">
+      <input matInput type="text" placeholder="Set initial value"
+             [(ngModel)]="gridsterObjectData.initialValue" (change)="notifyGridster()">
+    </mat-form-field>
+    <mat-form-field *ngIf="isEnumeration()" class="full-width">
+      <mat-label>Set initial value</mat-label>
+      <mat-select [(ngModel)]="gridsterObjectData.initialValue" (selectionChange)="notifyGridster()">
+        <mat-option *ngFor="let opt of optionsObjectData.options" [value]="opt">
+          {{opt}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="isMultichoice()" class="full-width">
+      <mat-label>Set initial value</mat-label>
+      <mat-select [(value)]="gridsterObjectData.initialValue" (selectionChange)="notifyGridster()" multiple>
+        <mat-option *ngFor="let opt of optionsObjectData.options" [value]="opt">
+          {{opt}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-slide-toggle *ngIf="isBoolean()" [(ngModel)]="gridsterObjectData.initialValue" (change)="notifyGridster()">
+      Set value
+    </mat-slide-toggle>
+    <mat-form-field *ngIf="isNumber()" class="full-width">
+      <input matInput type="number" placeholder="Set initial value"
+             [(ngModel)]="gridsterObjectData.initialValue" (change)="notifyGridster()" >
+    </mat-form-field>
+    <mat-form-field *ngIf="isDate()" class="full-width">
+      <div fxLayout="row">
+        <mat-datepicker-toggle [for]="datepicker"></mat-datepicker-toggle>
+        <input matInput (dateChange)="notifyGridster()"
+               [matDatepicker]="datepicker"
+               [(ngModel)]="gridsterObjectData.initialValue"
+               (click)="datepicker.open()"
+               (keydown.enter)="datepicker.close()"
+               placeholder="Set initial value">
+        <mat-datepicker #datepicker>
+        </mat-datepicker>
+      </div>
+    </mat-form-field>
+    <mat-form-field *ngIf="isDatetime()" class="full-width">
+      <input matInput
+             [ngxMatDatetimePicker]="picker"
+             placeholder="Set initial value"
+             [(ngModel)]="gridsterObjectData.initialValue"
+             (ngModelChange)="notifyGridster()"
+             >
+      <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker
+                               [showSpinners]="true"
+                               [showSeconds]="false"
+                               [stepHour]="1"
+                               [stepMinute]="5"
+                               [color]="'primary'"
+                               [enableMeridian]="false"
+                               class="full-width">
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
+    <mat-form-field *ngIf="isTaskCaseRef()" class="full-width">
+      <input matInput type="text" placeholder="Set initial value"
+             [(ngModel)]="gridsterObjectData.initialValue" (change)="notifyGridster()">
+    </mat-form-field>
+    <!--  OPTIONS MANAGEMENT IF APPLICABLE  -->
+    <div *ngIf="hasOptions()">
+      <mat-divider></mat-divider>
+      <div  cdkDropList class="drag-list margin-html" (cdkDropListDropped)="drop($event)">
+        <div *ngIf="optionsObjectData.options.length > 0">
+          <div class="drag-box" *ngFor="let item of optionsObjectData.options" cdkDrag>
+            <mat-icon class="icon-color" cdkDragHandle>drag_indicator</mat-icon>
+            <mat-form-field class="margin-right8px">
+              <input matInput type="text" placeholder="Set value" [(ngModel)]="item" (change)="notifyGridster()">
+            </mat-form-field>
+            <button mat-icon-button (click)="DeleteOption(item); notifyGridster()">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+        <div fxLayoutAlign="center center" *ngIf="optionsObjectData.options.length === 0" class="no-options">
+          <span>No options</span>
+        </div>
+      </div>
+      <button mat-raised-button color="accent" class="button-text save-button" (click)="AddOption(); notifyGridster()">
+        <mat-icon>add</mat-icon> Add option
+      </button>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <!--  FIELD OFFSET MANAGEMENT  -->
+    <div>
+      <mat-form-field class="full-width margin-html">
+        <input matInput type="number" placeholder="Set field offset"
+               [(ngModel)]="gridsterObjectData.offset" (change)="notifyGridster()">
+      </mat-form-field>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<mat-form-field [appearance]="datafieldObject.materialAppearance" class="full-width">
+  <mat-label *ngIf="!showLabel.value">{{datafieldObject.title}}</mat-label>
+  <div fxLayout="row">
+    <mat-datepicker-toggle [for]="datepicker"></mat-datepicker-toggle>
+    <input matInput disabled
+           [matDatepicker]="datepicker"
+           [value]="datafieldObject.initialValue"
+           placeholder="{{datafieldObject.placeholder}}">
+    <mat-datepicker #datepicker>
+    </mat-datepicker>
+  </div>
+  <mat-hint>{{datafieldObject.hint}}</mat-hint>
+</mat-form-field>

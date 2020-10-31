@@ -1,0 +1,30 @@
+.data-field {
+  &-title {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}
+
+.fill-all-space {
+  min-width: 100%;
+  min-height: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.cell-padding {
+  margin: 0;
+  padding: 8px;
+}
+
+.left-cell {
+  margin-top: -5px;
+}
+
+.right-cell {
+  margin-top: 5px;
+}
+.padding-sides-8px {
+  padding: 0 8px;
+}

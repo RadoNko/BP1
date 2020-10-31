@@ -1,0 +1,4 @@
+<div fxLayout="row" fxLayoutAlign="start center" class="fill-all-space">
+  <mat-label *ngIf="!showLabel.value">{{datafieldObject.title}}<br></mat-label>
+  <mat-slide-toggle [checked]="datafieldObject.initialValue" disabled>{{datafieldObject.placeholder}}</mat-slide-toggle>
+</div>

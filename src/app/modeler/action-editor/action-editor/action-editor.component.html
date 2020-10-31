@@ -1,0 +1,3 @@
+<div fxLayout="column" fxLayoutAlign="start stretch" id="{{name + '_div'}}">
+  <ngx-monaco-editor class="full-size-editor" id="{{name + '_editor'}}" [options]="editorOptions" [(ngModel)]="action.definition" (change)="onDefinitionChange()"></ngx-monaco-editor>
+</div>

@@ -1,0 +1,20 @@
+.full-width {
+  display: block;
+  margin : 0 auto;
+  width: 100%;
+}
+
+.datetime-field {
+  font-size: 14px;
+  top: -5px;
+}
+
+.datetime-form-field {
+  ::ng-deep .mat-form-field-outline-start {
+    width: 7px !important;
+  }
+
+  ::ng-deep .mat-form-field-label-wrapper {
+    left: -40px !important;
+  }
+}

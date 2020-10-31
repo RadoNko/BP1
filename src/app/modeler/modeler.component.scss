@@ -1,0 +1,42 @@
+.canvas-wrapper {
+  background-color: rgba(255, 255, 255, 0);
+
+  border: none;
+}
+
+.canvas {
+  width: 10000px;
+  height: 5000px;
+}
+
+.modelerToolbar {
+  height: 54px;
+  border-bottom: 1px solid #DDDDDD;
+}
+
+.sidenav {
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  background: white;
+  border-right: 1px solid #DDDDDD;
+}
+
+.container-sidenav {
+  height: calc(100% - 55px);
+}
+
+.margin-right16px {
+  margin-right: 16px;
+}
+
+.active-item {
+  //background: map-get( A200) !important; // GLOBAL STYLE
+}
+
+.addTab {
+  cursor: pointer;
+}
+

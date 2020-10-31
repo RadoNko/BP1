@@ -1,0 +1,80 @@
+<mat-list>
+  <h2 class="field-list-heading">Data fields</h2>
+
+  <mat-expansion-panel #existingFieldPanel class="field-list-expansion-panel">
+    <mat-expansion-panel-header class="field-list-expansion-header">
+      <mat-panel-title class="field-list-expansion-title">
+        Existing fields
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div fxLayoutAlign="start center">
+      <mat-icon fxFlex="13">search</mat-icon>
+      <mat-form-field fxFlex="75">
+        <input matInput type="text" placeholder="search" [(ngModel)]="existingFieldsSearchInput">
+      </mat-form-field>
+      <mat-icon fxFlex="12" class="clear-search-icon" *ngIf="existingFieldsSearchInput.length > 0"
+                (click)="existingFieldsSearchInput=''">clear
+      </mat-icon>
+    </div>
+    <ng-container *ngFor="let item of existingDataFields">
+      <mat-list-item class="field-list-mat-list-item" *ngIf="!item.placedInForm && containsSearchExpression(item)"
+                     draggable="true"
+                     (dragstart)="dragStartHandlerExisting($event, item.datafield)">
+        <div class="field-list-mat-list-item-title">
+          <mat-icon class="icon-color">drag_indicator</mat-icon>
+          <span matTooltip="{{item.title}}"
+                matTooltipDisabled="{{item.title.length <= 9}}">
+            {{shortening(item.title)}}
+          </span>
+        </div>
+      </mat-list-item>
+    </ng-container>
+    <ng-container *ngFor="let item of existingDataFields">
+      <mat-list-item *ngIf="item.placedInForm && containsSearchExpression(item)">
+        <div class="field-list-mat-list-item-disabled-title">
+          <mat-icon class="icon-color">drag_indicator</mat-icon>
+          <span>{{shortening(item.title)}}</span>
+        </div>
+      </mat-list-item>
+    </ng-container>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel #newFieldsPanel class="field-list-expansion-panel">
+    <mat-expansion-panel-header class="field-list-expansion-header">
+      <mat-panel-title class="field-list-expansion-title">
+        Create new fields
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <mat-accordion multi="false">
+      <mat-expansion-panel #dataFieldPanel class="field-list-expansion-panel"
+                           *ngFor="let fieldType of dataFields"
+                           (mouseover)="dataFieldPanel.open()">
+        <mat-expansion-panel-header class="field-list-expansion-header">
+          <mat-panel-title class="field-list-expansion-title">
+            {{fieldType.title}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list-item class="field-list-mat-list-item" *ngFor="let item of fieldType.views" draggable="true"
+                       (dragstart)="dragStartHandlerNew($event ,fieldType, item.title, item.template)">
+          <div class="field-list-mat-list-item-title">
+            <mat-icon class="icon-color">drag_indicator</mat-icon>
+            <span>{{shortening(item.title)}}</span>
+          </div>
+        </mat-list-item>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </mat-expansion-panel>
+
+  <div class="save-back-div">
+    <button mat-raised-button color="accent" class="save-button button-text" (click)="saveToTransition()">
+      <mat-icon>add</mat-icon>
+      <span>Save</span>
+    </button>
+    <button mat-stroked-button class="back-button button-text" (click)="backModeler()">
+      <mat-icon>keyboard_backspace</mat-icon>
+      <span>Back</span>
+    </button>
+  </div>
+</mat-list>

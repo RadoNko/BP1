@@ -1,0 +1,19 @@
+<mat-form-field [appearance]="datafieldObject.materialAppearance" class="full-width datetime-form-field">
+  <mat-label *ngIf="!showLabel.value">{{datafieldObject.title}}</mat-label>
+  <input matInput disabled
+         [ngxMatDatetimePicker]="picker"
+         [placeholder]="datafieldObject.placeholder"
+         [(ngModel)]="datafieldObject.initialValue"
+         class="datetime-field">
+  <mat-datepicker-toggle matPrefix [for]="picker"></mat-datepicker-toggle>
+  <ngx-mat-datetime-picker #picker
+                           [showSpinners]="true"
+                           [showSeconds]="false"
+                           [stepHour]="1"
+                           [stepMinute]="5"
+                           [color]="'primary'"
+                           [enableMeridian]="false">
+  </ngx-mat-datetime-picker>
+  <mat-hint>{{datafieldObject.hint}}</mat-hint>
+</mat-form-field>
+

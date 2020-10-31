@@ -1,0 +1,155 @@
+<div fxLayout="col wrap" class="height-100">
+  <div fxFlex="30" class="border-right height-56" >
+      <mat-action-list matSort (matSortChange)="sortData($event)">
+        <div mat-subheader class="header-bottom-border">
+          <p fxFlex="35" mat-sort-header="id"><strong>ID</strong></p>
+          <p fxFlex="45" mat-sort-header="name" fxHide.lt-xl>Name</p>
+          <div fxFlex="45" fxHide fxShow.lt-xl></div>
+          <button mat-icon-button class="button-line" matTooltip="Add data variable" (click)="addDataVariable()">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+        <mat-list-item class="item-bottom-border" [ngClass]="{'data-selected': selected && selected.id === item.id}" *ngFor="let item of dataSource; let i = index" (click)="setData(item)" (mouseenter)="showIcons($event)" (mouseleave)="hideIcons($event)">
+          <p fxFlex="35" fxHide.lt-xl class="text-ellipsis" matTooltip="{{item.id}}"><strong>{{item.id}}</strong></p>
+          <p fxFlex="35" class="text-ellipsis" fxHide fxShow.lt-xl matTooltip="{{item.name}}"><strong>{{item.id}}</strong></p>
+          <p fxFlex="45" class="text-ellipsis" fxHide.lt-xl matTooltip="{{item.name}}">{{item.name}}</p>
+          <div fxFlex="45" fxHide fxShow.lt-xl></div>
+          <button mat-icon-button matTooltip="Delete data field" (click)="openDialog($event, item)" class="data-edit-list-icon-hidden data-edit-list-icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button matTooltip="Duplicate data field" mat-icon-button (click)="duplicateDataVariable($event, item)" class="data-edit-list-icon-hidden data-edit-list-icon">
+            <mat-icon>add_to_photos</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-action-list>
+      <mat-paginator class="margin-top10px footer" [length]="length" [pageSize]="pageSize" [pageIndex]="pageIndex"
+                     [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)" showFirstLastButtons>
+      </mat-paginator>
+  </div>
+
+  <div fxFlex="70" class="no-overflow">
+    <div *ngIf="clicked === 1">
+      <div fxLayout="row wrap" fxLayoutAlign="start center" class="margin-top32px">
+
+        <div fxFlex="2.5"></div>
+
+        <div fxFlex="20">Set Id</div>
+
+        <mat-form-field fxFlex="25">
+          <input matInput [(ngModel)]="itemData.id" (change)="setValue($event, itemData, 'id')">
+        </mat-form-field>
+
+        <div fxFlex="2.5"></div>
+
+        <div fxFlex="22.5">Set Title</div>
+
+        <mat-form-field fxFlex="25">
+          <input matInput [(ngModel)]="itemData.name" (change)="setValue($event, itemData, 'name')">
+        </mat-form-field>
+
+        <div fxFlex="2.5"></div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutAlign="start center">
+
+        <div fxFlex="2.5"></div>
+
+        <div fxFlex="20">Set Type</div>
+
+        <mat-form-field fxFlex="25">
+          <mat-select [(value)]="itemData.type" (selectionChange)="setValue($event, itemData, 'type')">
+            <mat-option *ngFor="let opt of typeArray" [value]="opt.value">{{opt.viewValue}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div fxFlex="2.5"></div>
+
+        <div fxFlex="22.5">Is Immediate?</div>
+
+        <div fxFlex="25">
+          <mat-checkbox [(ngModel)]="itemData.immediate" (change)="setValue($event, itemData, 'immediate')"></mat-checkbox>
+        </div>
+
+        <div fxFlex="2.5"></div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutAlign="start center">
+
+        <div fxFlex="2.5"></div>
+
+        <div fxFlex="20">Set Description</div>
+
+        <mat-form-field fxFlex="25">
+          <input matInput [(ngModel)]="itemData.desc" (change)="setValue($event, itemData, 'desc')">
+        </mat-form-field>
+
+        <div fxFlex="2.5"></div>
+
+        <div fxFlex="22.5">Set Placeholder</div>
+
+        <mat-form-field fxFlex="25">
+          <input matInput [(ngModel)]="itemData.placeholder" (change)="setValue($event, itemData, 'placeholder')">
+        </mat-form-field>
+
+        <div fxFlex="2.5"></div>
+      </div>
+      <div fxLayout="row wrap" fxLayoutAlign="start center">
+
+        <div fxFlex="2.5"></div>
+
+        <div fxFlex="20">Set Init Value</div>
+
+        <mat-form-field fxFlex="25">
+          <input matInput [(ngModel)]="itemData.value" (change)="setValue($event, itemData, 'value')">
+        </mat-form-field>
+
+        <div fxFlex="2.5"></div>
+
+        <div fxFlex="22.5">Set Validation (deprecated)</div>
+
+        <mat-form-field fxFlex="25">
+          <input matInput [(ngModel)]="itemData.valid" (change)="setValue($event, itemData, 'valid')">
+        </mat-form-field>
+
+        <div fxFlex="2.5"></div>
+      </div>
+
+      <div class="options" *ngIf="itemData.type === 'enumeration' || itemData.type === 'multichoice'" fxLayout="row wrap" fxLayoutAlign="start center">
+        <div fxFlex="2.5"></div>
+        <div fxFlexAlign="start" fxFlex="20">Set Options</div>
+        <div fxFlex="2.5"></div>
+        <div fxFlex="72.5" fxLayout="column">
+          <div cdkDropList class="drag-list margin-html" (cdkDropListDropped)="drop($event)">
+            <div *ngIf="itemData.values.length > 0">
+              <div class="drag-box" *ngFor="let item of itemData.values; let i = index" cdkDrag>
+                <mat-icon class="icon-color" cdkDragHandle>drag_indicator</mat-icon>
+                <mat-form-field class=" margin-right8px option-input">
+                  <input matInput (change)="setValue($event, itemData, 'values')" type="text" placeholder="Set value" [(ngModel)]="item">
+                </mat-form-field>
+                <button mat-icon-button (click)="DeleteOption(i)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </div>
+            <div fxLayoutAlign="center center" *ngIf="itemData.values.length === 0" class="no-options">
+              <span>No options</span>
+            </div>
+          </div>
+          <button mat-stroked-button class="button-text" (click)="AddOption()">
+            <mat-icon>add</mat-icon> Add option
+          </button>
+        </div>
+        <div fxFlex="2.5"></div>
+      </div>
+
+      <div fxLayout="row wrap" fxLayoutAlign="start center">
+        <div fxFlex="2.5"></div>
+
+        <div fxFlex="20">Set Validations</div>
+
+        <nab-validation-tree (changeValidations)="saveValidations($event, itemData)">
+        </nab-validation-tree>
+
+        <div fxFlex="2.5"></div>
+      </div>
+    </div>
+  </div>
+</div>

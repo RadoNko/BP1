@@ -1,0 +1,46 @@
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#file-label {
+  display: inline-flex;
+  vertical-align: middle;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+#file-label mat-icon {
+  font-size: 18px;
+  text-align: center;
+}
+
+#file-label a {
+  cursor: pointer;
+}
+
+.container {
+  padding: 10%;
+}
+
+.download {
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration-line: underline;
+}
+
+.upload {
+  cursor: default;
+  font-weight: normal;
+  text-decoration-line: none;
+}
+
+.fill-all-space {
+  min-width: 100%;
+  min-height: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}

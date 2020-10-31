@@ -1,0 +1,22 @@
+<mat-action-list>
+  <div mat-subheader class="header-bottom-border">
+    <p fxFlex="35"><strong>ID</strong></p>
+    <p fxFlex="30">Value</p>
+    <p fxFlex="25">Reference</p>
+    <p fxFlex>Actions</p>
+  </div>
+  <mat-list-item class="item-bottom-border" *ngFor="let item of dataSource">
+    <p fxFlex="35"><strong>{{item.id}}</strong></p>
+    <p fxFlex="30">{{item.value}}</p>
+    <p fxFlex="25">{{isSelected(item) ? 'Referenced' : ''}}</p>
+    <button mat-icon-button class="button-line" matTooltip="Add data variable" (click)="setArcVariability(item)">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-icon-button class="button-line" matTooltip="Remove data variable" (click)="removeArcVariability()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-action-list>
+<mat-paginator class="margin-top10px footer" [length]="length" [pageSize]="pageSize" [pageIndex]="pageIndex"
+               [pageSizeOptions]="pageSizeOptions" (page)="onPageChanged($event)" showFirstLastButtons>
+</mat-paginator>

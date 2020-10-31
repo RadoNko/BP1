@@ -1,0 +1,15 @@
+import { OnDestroy, OnInit } from '@angular/core';
+import { Hotkey } from '../hotkey.model';
+import { HotkeysService } from '../hotkeys.service';
+import { Subscription } from 'rxjs';
+export declare class HotkeysCheatsheetComponent implements OnInit, OnDestroy {
+    private hotkeysService;
+    helpVisible: boolean;
+    title: string;
+    subscription: Subscription;
+    hotkeys: Hotkey[];
+    constructor(hotkeysService: HotkeysService);
+    ngOnInit(): void;
+    ngOnDestroy(): void;
+    toggleCheatSheet(): void;
+}

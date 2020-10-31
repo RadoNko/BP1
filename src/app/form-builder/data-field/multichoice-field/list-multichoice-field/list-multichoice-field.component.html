@@ -1,0 +1,6 @@
+<mat-selection-list [(ngModel)]="datafieldObject.initialValue" class="full-width" disabled>
+  <mat-label *ngIf="!showLabel.value">{{datafieldObject.title}}</mat-label>
+  <mat-list-option *ngFor="let option of datafieldObject.options" [value]="option">
+    {{option}}
+  </mat-list-option>
+</mat-selection-list>

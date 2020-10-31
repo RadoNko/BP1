@@ -1,0 +1,10 @@
+/*
+ * Public API Surface of angular2-hotkeys
+ */
+export * from './lib/hotkeys.service';
+export * from './lib/hotkeys.directive';
+export * from './lib/hotkeys-cheatsheet/hotkeys-cheatsheet.component';
+export * from './lib/hotkey.model';
+export * from './lib/hotkey.options';
+export * from './lib/hotkey.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL2FuZ3VsYXIyLWhvdGtleXMvIiwic291cmNlcyI6WyJwdWJsaWMtYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztHQUVHO0FBRUgsY0FBYyx1QkFBdUIsQ0FBQztBQUN0QyxjQUFjLHlCQUF5QixDQUFDO0FBQ3hDLGNBQWMsdURBQXVELENBQUM7QUFDdEUsY0FBYyxvQkFBb0IsQ0FBQztBQUNuQyxjQUFjLHNCQUFzQixDQUFDO0FBQ3JDLGNBQWMscUJBQXFCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKlxuICogUHVibGljIEFQSSBTdXJmYWNlIG9mIGFuZ3VsYXIyLWhvdGtleXNcbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL2xpYi9ob3RrZXlzLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvaG90a2V5cy5kaXJlY3RpdmUnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvaG90a2V5cy1jaGVhdHNoZWV0L2hvdGtleXMtY2hlYXRzaGVldC5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvaG90a2V5Lm1vZGVsJztcbmV4cG9ydCAqIGZyb20gJy4vbGliL2hvdGtleS5vcHRpb25zJztcbmV4cG9ydCAqIGZyb20gJy4vbGliL2hvdGtleS5tb2R1bGUnO1xuIl19

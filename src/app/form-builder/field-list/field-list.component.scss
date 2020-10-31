@@ -1,0 +1,100 @@
+.field-list-heading {
+  padding: 20px;
+  margin: 0;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  width: 80%;
+  background: white;
+  display: flex;
+  z-index: 1;
+}
+
+.field-list-mat-list-item:hover {
+  cursor: grab;
+
+  .field-list-mat-list-item-title {
+    //color: map-get( 500); GLOBAL STYLE
+    text-shadow: 0 0 5px #fff;
+  }
+}
+
+.field-list-mat-list-item-disabled-title {
+  //color: map-get( 300); GLOBAL STYLE
+  text-shadow: 0 0 5px #fff;
+}
+
+.field-list-expansion-panel {
+  box-shadow: none !important;
+}
+
+.field-list-expansion-title {
+  font-weight: 500;
+}
+
+.field-list-expansion-header:hover {
+  //color: map-get( 500); GLOBAL STYLE
+  .field-list-expansion-title {
+    //color: map-get( 500); GLOBAL STYLE
+  }
+}
+
+.half-button {
+  position: fixed;
+  top: 18px;
+  left: 317px;
+  z-index: 1;
+}
+
+.remove-mat-icon {
+  position: absolute;
+  right: -10px;
+  top: 12px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.save-button {
+  margin-top: 20px;
+  margin-left: 5.5%;
+  margin-right: 5.5%;
+  width: 89%;
+}
+
+.back-button {
+  margin-top: 8px;
+  margin-left: 5.5%;
+  margin-right: 5.5%;
+  width: 89%;
+}
+
+.save-back-div{
+  position: sticky;
+  z-index: 1;
+  bottom: 0;
+  background: white;
+  padding-bottom: 10px;
+}
+
+.button-text {
+  color: black !important;
+}
+
+.clear-search-icon {
+  border-radius: 12px;
+  min-width: 24px;
+  min-height: 24px;
+
+  &:hover {
+    //background-color: map-get( A200); GLOBAL STYLE
+  }
+}
+.icon-color {
+  position: relative;
+  top: 5px;
+  padding-right: 4px;
+  color: #bbbbbb;
+}
+
+.mat-list {
+  padding: 0;
+}

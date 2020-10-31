@@ -1,0 +1,10 @@
+<mat-radio-group disabled
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group full-width"
+  [(ngModel)]="datafieldObject.initialValue">
+  <mat-label *ngIf="!showLabel.value">{{datafieldObject.title}}<br></mat-label>
+  <mat-radio-button class="example-radio-button" *ngFor="let option of datafieldObject.options" [value]="option">
+    {{option}}
+  </mat-radio-button>
+</mat-radio-group>
+

@@ -1,0 +1,87 @@
+<nab-data-field *ngIf="isBoolean()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="booleanFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #booleanFieldTemplate let-showLabel="showLargeLayout">
+    <nab-boolean-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-boolean-field>
+  </ng-template>
+</nab-data-field>
+
+<nab-data-field *ngIf="isEnumeration()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="enumerationFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #enumerationFieldTemplate let-showLabel="showLargeLayout">
+    <nab-enumeration-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-enumeration-field>
+  </ng-template>
+</nab-data-field>
+
+<nab-data-field *ngIf="isMultichoice()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="multichoiceFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #multichoiceFieldTemplate let-showLabel="showLargeLayout">
+    <nab-multichoice-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-multichoice-field>
+  </ng-template>
+</nab-data-field>
+
+<nab-data-field *ngIf="isText()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="textFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #textFieldTemplate let-showLabel="showLargeLayout">
+    <nab-text-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-text-field>
+  </ng-template>
+</nab-data-field>
+
+<nab-data-field *ngIf="isNumber()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="numberFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #numberFieldTemplate let-showLabel="showLargeLayout">
+    <nab-number-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-number-field>
+  </ng-template>
+</nab-data-field>
+
+<nab-data-field *ngIf="isDate()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="dateFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #dateFieldTemplate let-showLabel="showLargeLayout">
+    <nab-date-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-date-field>
+  </ng-template>
+</nab-data-field>
+
+<nab-data-field *ngIf="isDatetime()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="datetimeFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #datetimeFieldTemplate let-showLabel="showLargeLayout">
+    <nab-datetime-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-datetime-field>
+  </ng-template>
+</nab-data-field>
+
+<nab-data-field *ngIf="isFile()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="fileFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #fileFieldTemplate let-showLabel="showLargeLayout">
+    <nab-file-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-file-field>
+  </ng-template>
+</nab-data-field>
+
+<nab-data-field *ngIf="isFileList()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="fileListFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #fileListFieldTemplate let-showLabel="showLargeLayout">
+    <nab-file-list-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-file-list-field>
+  </ng-template>
+</nab-data-field>
+
+<nab-data-field *ngIf="isUser()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="userFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #userFieldTemplate let-showLabel="showLargeLayout">
+    <nab-user-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-user-field>
+  </ng-template>
+</nab-data-field>
+
+<nab-data-field *ngIf="isTaskRef()" [title]="datafield.title" class="fill-all-space" [dataFieldTemplate]="taskrefFieldTemplate"
+                [splitTemplate]="datafield.usesSplitTemplate"
+                        [offset]="modelService.transitionOffset + datafield.offset">
+  <ng-template #taskrefFieldTemplate let-showLabel="showLargeLayout">
+    <nab-task-ref-field class="fill-all-space" [datafieldObject]="datafield" [showLabel]="showLabel"></nab-task-ref-field>
+  </ng-template>
+</nab-data-field>

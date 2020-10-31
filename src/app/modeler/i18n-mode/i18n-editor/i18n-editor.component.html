@@ -1,0 +1,54 @@
+<mat-accordion>
+  <mat-expansion-panel class="localization-panel">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{leafNode.treeNodeName}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div *ngIf="!leafNode.values">
+      <div fxLayout="row wrap" fxLayoutAlign="start center">
+        <div fxFlex="5"></div>
+        <div fxFlex="15">Original language</div>
+        <mat-form-field fxFlex="20">
+          <input matInput disabled [(ngModel)]="leafNode.original">
+        </mat-form-field>
+
+        <div fxFlex="20"></div>
+
+        <div fxFlex="15">Set translation</div>
+        <mat-form-field fxFlex="20" *ngIf="i18nModeService.language !== undefined">
+          <input matInput [ngModel]="getTranslation()" (blur)="setTranslation($event)">
+        </mat-form-field>
+        <mat-form-field fxFlex="20" *ngIf="i18nModeService.language === undefined">
+          <input matInput disabled>
+        </mat-form-field>
+
+        <div fxFlex="5"></div>
+      </div>
+    </div>
+
+    <div *ngIf="leafNode.values">
+      <div fxLayout="row wrap" fxLayoutAlign="start center" *ngFor="let value of leafNode.values; index as i">
+        <div fxFlex="5"></div>
+        <div fxFlex="15">Original language</div>
+        <mat-form-field fxFlex="20">
+          <input matInput disabled [(ngModel)]="value.original">
+        </mat-form-field>
+
+        <div fxFlex="20"></div>
+
+        <div fxFlex="15">Set translation</div>
+        <mat-form-field fxFlex="20" *ngIf="i18nModeService.language !== undefined">
+          <input matInput [ngModel]="getTranslation(i)" (blur)="setTranslation($event, i)">
+        </mat-form-field>
+        <mat-form-field fxFlex="20" *ngIf="i18nModeService.language === undefined">
+          <input matInput disabled>
+        </mat-form-field>
+
+        <div fxFlex="5"></div>
+      </div>
+    </div>
+
+  </mat-expansion-panel>
+</mat-accordion>

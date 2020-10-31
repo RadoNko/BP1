@@ -1,0 +1,17 @@
+import { ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { ExtendedKeyboardEvent } from './hotkey.model';
+import { HotkeysService } from './hotkeys.service';
+import 'mousetrap';
+export declare class HotkeysDirective implements OnInit, OnDestroy {
+    private hotkeysService;
+    private elementRef;
+    hotkeys: {
+        [combo: string]: (event: KeyboardEvent, combo: string) => ExtendedKeyboardEvent;
+    }[];
+    private mousetrap;
+    private hotkeysList;
+    private oldHotkeys;
+    constructor(hotkeysService: HotkeysService, elementRef: ElementRef);
+    ngOnInit(): void;
+    ngOnDestroy(): void;
+}

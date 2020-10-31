@@ -1,0 +1,5 @@
+<mat-form-field [appearance]="datafieldObject.materialAppearance" class="full-width">
+    <mat-label *ngIf="!showLabel.value">{{datafieldObject.title}}</mat-label>
+    <input matInput disabled [placeholder]="datafieldObject.placeholder" [value]="datafieldObject.initialValue" >
+    <mat-hint>{{datafieldObject.hint}}</mat-hint>
+</mat-form-field>

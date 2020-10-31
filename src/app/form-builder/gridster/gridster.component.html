@@ -1,0 +1,14 @@
+<gridster [options]="options" (click)="deselect()">
+  <gridster-item [item]="field" *ngFor="let field of placedDataFields" [ngClass]="{'active-item-gridster': isActive(field)}" class="gridster-item">
+
+    <form class="fill-all-space" (click)="editDatafield($event, field)" (contextmenu)="openMenu($event, field)">
+      <nab-gridster-datafield class="fill-all-space" [datafield]="field.datafield"></nab-gridster-datafield>
+    </form>
+
+  </gridster-item>
+</gridster>
+<div id="ctxMenu">
+  <div class="menuContent">
+    <button class="menuItem" (click)="removeItem($event)"><mat-icon>delete</mat-icon>Delete</button>
+  </div>
+</div>
