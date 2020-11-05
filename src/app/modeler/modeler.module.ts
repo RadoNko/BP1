@@ -30,6 +30,7 @@ import {I18nEditorComponent} from './i18n-mode/i18n-editor/i18n-editor.component
 import {DialogAddLanguageComponent} from './control-panel/dialogs/dialog-add-language/dialog-add-language.component';
 import {MatIconRegistry} from '@angular/material/icon';
 import {CdkTreeModule} from '@angular/cdk/tree';
+import { HeatmapModeComponent } from './heatmap-mode/heatmap-mode.component';
 
 @NgModule({
     declarations: [
@@ -52,6 +53,7 @@ import {CdkTreeModule} from '@angular/cdk/tree';
         DialogTransitionSettingsComponent,
         I18nEditorComponent,
         DialogAddLanguageComponent,
+        HeatmapModeComponent,
     ],
     entryComponents: [
         DialogManageRolesComponent,
