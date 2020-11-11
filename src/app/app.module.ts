@@ -16,6 +16,7 @@ import {RoleModeComponent} from './modeler/role-mode/role-mode.component';
 import {ActionsModeComponent} from './modeler/actions-mode/actions-mode.component';
 import {I18nModeComponent} from './modeler/i18n-mode/i18n-mode.component';
 import {MatIconRegistry} from '@angular/material/icon';
+import {HeatmapModeComponent} from "./modeler/heatmap-mode/heatmap-mode.component";
 
 const appRoutes: Routes = [
   {
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
       {path: 'roles', component: RoleModeComponent},
       {path: 'actions', component: ActionsModeComponent},
       {path: 'i18n', component: I18nModeComponent},
+      {path: 'heatmap', component: HeatmapModeComponent},
     ]
   },
   {path: 'form', component: FormBuilderComponent},

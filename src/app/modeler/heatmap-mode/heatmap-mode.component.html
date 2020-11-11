@@ -1,1 +1,15 @@
-<p>heatmap-mode works!</p>
+<div id="canvas-wrapper" class="canvas-wrapper">
+    <svg id="canvas" class="canvas"
+         #canvas
+         (mousedown)="doMouseDown($event)"
+         (mousemove)="doMouseMove($event)"
+    ></svg>
+</div>
+
+<div id="dropzone"
+     style="border: 2px solid #0091ea; padding: 25px; margin: 5px; display: none; width: 96%; height: 93%;position: absolute;">
+    <!--     (ondrop)="dropHandler(event);"-->
+    <!--     (ondragover)="dragOverHandler(event);">-->
+
+    <h2 style="padding-top: 20%; text-align: center;">Drop model here!</h2>
+</div>

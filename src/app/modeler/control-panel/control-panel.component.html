@@ -30,6 +30,11 @@
     <mat-icon [ngClass]="{'fill-svg': isActiveView('i18n')}">translate</mat-icon>
   </button>
 
+  <button mat-icon-button class="button-line" [ngClass]="{'button-highlight': isActiveView('heatmap')}" matTooltip="Heatmap view" [routerLink]="'./heatmap'" >
+    <mat-icon [ngClass]="{'fill-svg': isActiveView('heatmap')}">layers</mat-icon>
+    <!--local_fire_department/layers-->
+  </button>
+
   <mat-divider [vertical]="true" class="style-fix padding16px"></mat-divider>
 
   <!--OPEN-->
