@@ -4,9 +4,11 @@ import { DataModeComponent } from './data-mode.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MaterialImportModule} from '../../material-import/material-import.module';
 import {CommonModule} from '@angular/common';
+// @ts-ignore
 import {CdkImportModule} from '../../cdk-import/cdk-import.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
+// @ts-ignore
 import {MatCheckboxModule, MatSortModule, MatTabsModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {MonacoEditorModule} from 'ngx-monaco-editor';

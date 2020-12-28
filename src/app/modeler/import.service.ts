@@ -28,6 +28,7 @@ export class ImportService {
   }
 
   private originFile: string;
+  private originLogFile: string;
 
   static correctMax(value: number, max: number) {
     return value > max ? max : value;
@@ -47,6 +48,19 @@ export class ImportService {
       reader.readAsText(file);
     });
   }
+  openLogFile(event): Promise<Model>{
+    return new Promise(resolve =>{
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.originLogFile = String(reader.result);
+        //console.log(this.originLogFile);
+        const model = this.importFromLog(this.parseLog(this.originLogFile));
+        resolve(model);
+      };
+      reader.readAsText(file);
+    })
+  }
 
   parseXml(txt: string): Document {
     let xmlDoc;
@@ -55,6 +69,14 @@ export class ImportService {
       xmlDoc = parser.parseFromString(txt, 'text/xml');
     }
     return xmlDoc;
+  }
+  parseLog(txt: string): Document {
+    let logDoc = new Document();
+    let lines = this.originLogFile.split(/[\r\n]+/g);
+    lines.forEach(function(line) {
+      console.log(line);
+    });
+    return logDoc;
   }
 
   importFromXml(xmlDoc): Model {
@@ -68,6 +90,11 @@ export class ImportService {
     this.importPlaces(model, xmlDoc);
     this.importArcs(model, xmlDoc);
     this.importI18n(model, xmlDoc);
+    return model;
+  }
+  importFromLog(logDoc) : Model{
+    const model = new Model();
+
     return model;
   }
 

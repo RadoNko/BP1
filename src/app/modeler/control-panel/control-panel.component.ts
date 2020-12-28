@@ -66,6 +66,9 @@ export class ControlPanelComponent implements OnInit, AfterViewInit {
       this.importModel.emit();
     });
   }
+  openLogModel(event: any){
+    this.importService.openLogFile(event);
+  }
 
   exportAsXML(num: number) {
     this.exportService.exportXml(this.modelService.model, num);

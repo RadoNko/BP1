@@ -45,6 +45,14 @@
     </label>
   </button>
 
+  <!--OPEN .LOG-->
+  <button mat-icon-button class="button-line" matTooltip="Choose a LOG file to open." >
+    <input type="file" id="openLog" class="button--input" (change)="openLogModel($event)"/>
+    <label id="openLogButton" for="openLog">
+      <mat-icon svgIcon="open"></mat-icon>
+    </label>
+  </button>
+
   <!--SAVE AS XML-->
   <button mat-icon-button class="button-line" matTooltip="Save as an XML file." (click)="exportAsXML(1)">
     <mat-icon svgIcon="save"></mat-icon>
