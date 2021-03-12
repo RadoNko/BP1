@@ -31,6 +31,7 @@ import {DialogAddLanguageComponent} from './control-panel/dialogs/dialog-add-lan
 import {MatIconRegistry} from '@angular/material/icon';
 import {CdkTreeModule} from '@angular/cdk/tree';
 import { HeatmapModeComponent } from './heatmap-mode/heatmap-mode.component';
+import { TestElasticConnectionComponent } from './heatmap-mode/elasticsearch/test-elastic-connection/test-elastic-connection.component';
 
 @NgModule({
     declarations: [
@@ -54,6 +55,7 @@ import { HeatmapModeComponent } from './heatmap-mode/heatmap-mode.component';
         I18nEditorComponent,
         DialogAddLanguageComponent,
         HeatmapModeComponent,
+        TestElasticConnectionComponent,
     ],
     entryComponents: [
         DialogManageRolesComponent,

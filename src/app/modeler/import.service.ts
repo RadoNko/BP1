@@ -18,13 +18,14 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {DatafieldTransformer} from '../form-builder/gridster/datafield.transformer';
 import {I18nTranslations} from './classes/i18n-translations';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {HeatmapModeService} from "./heatmap-mode/heatmap-mode.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ImportService {
 
-  constructor(private http: HttpClient, private _snackBar: MatSnackBar) {
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar, private HeatMapService : HeatmapModeService) {
   }
 
   private originFile: string;
@@ -40,6 +41,7 @@ export class ImportService {
       const reader = new FileReader();
       reader.onload = () => {
         this.originFile = String(reader.result);
+
         const model = this.importFromXml(this.parseXml(this.originFile));
         // const fileInputField = document.getElementById(fileInputFieldId) as HTMLInputElement;
         // fileInputField.value = '';
@@ -48,18 +50,10 @@ export class ImportService {
       reader.readAsText(file);
     });
   }
-  openLogFile(event): Promise<Model>{
-    return new Promise(resolve =>{
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.originLogFile = String(reader.result);
-        //console.log(this.originLogFile);
-        const model = this.importFromLog(this.parseLog(this.originLogFile));
-        resolve(model);
-      };
-      reader.readAsText(file);
-    })
+  openLogFile(event){
+    const file = event.target.files[0];
+    this.originLogFile = this.HeatMapService.loadFile(file);
+
   }
 
   parseXml(txt: string): Document {
@@ -70,14 +64,7 @@ export class ImportService {
     }
     return xmlDoc;
   }
-  parseLog(txt: string): Document {
-    let logDoc = new Document();
-    let lines = this.originLogFile.split(/[\r\n]+/g);
-    lines.forEach(function(line) {
-      console.log(line);
-    });
-    return logDoc;
-  }
+
 
   importFromXml(xmlDoc): Model {
     const model = new Model();
@@ -92,7 +79,7 @@ export class ImportService {
     this.importI18n(model, xmlDoc);
     return model;
   }
-  importFromLog(logDoc) : Model{
+  renderFromLog(logDoc) : Model{
     const model = new Model();
 
     return model;

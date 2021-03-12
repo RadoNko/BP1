@@ -5,6 +5,7 @@ import {CanvasService} from "../canvas.service";
 import {Canvas} from "../classes/canvas";
 import {ModelerConfig} from "../modeler-config";
 import {Model} from "../classes/model";
+import {ElasticsearchService} from "./elasticsearch/elasticsearch.service";
 
 @Component({
   selector: 'nab-heatmap-mode',
@@ -15,9 +16,10 @@ export class HeatmapModeComponent implements AfterViewInit {
 
   @ViewChild('canvas') canvas: ElementRef;
 
-  constructor(private modelService : ModelService, private heatService : HeatmapModeService, private canvasService : CanvasService) { }
+  constructor(private modelService : ModelService, private heatService : HeatmapModeService, private canvasService : CanvasService,private es :ElasticsearchService) { }
 
   ngOnInit(): void {
+
   }
 
   doMouseMove($event: MouseEvent) {
@@ -43,8 +45,7 @@ export class HeatmapModeComponent implements AfterViewInit {
       this.canvasService.renderModel(this.modelService.model);
       this.reset('select');
     });
-
-
+    this.heatService.writeDataState();
   }
 
 

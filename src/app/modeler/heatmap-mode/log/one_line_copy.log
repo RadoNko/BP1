@@ -1,0 +1,1 @@
+2020-12-16 15:43:33.035  INFO 18020 --- [http-nio-8080-exec-7] c.n.w.workflow.service.TaskService       : [5fda1d109ceec746643760f5]: Task [GENERATE] in case [11.11.2020 13:20] assigned to [super@netgrif.com] was finished
