@@ -10,6 +10,7 @@ import {DialogAddLanguageComponent} from './dialogs/dialog-add-language/dialog-a
 import {I18nTranslations} from '../classes/i18n-translations';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSidenav} from '@angular/material/sidenav';
+import {HeatmapModeService} from "../heatmap-mode/heatmap-mode.service";
 
 @Component({
   selector: 'nab-control-panel',
@@ -27,7 +28,7 @@ export class ControlPanelComponent implements OnInit, AfterViewInit {
 
   constructor(private canvasService: CanvasService, private exportService: ExportService, private modelService: ModelService,
               private importService: ImportService, public dialog: MatDialog, private dialogAddLanguageComponent: MatDialog,
-              private router: Router, private actionsModeService: ActionsModeService, private i18nModeService: I18nModeService) {
+              private router: Router, private actionsModeService: ActionsModeService, private i18nModeService: I18nModeService, private heatmapModeService: HeatmapModeService) {
     this.importModel = new EventEmitter<void>();
     this.modelService.whichButton.subscribe(obj => this.whichButton = obj);
     this.router.events.subscribe(() => {

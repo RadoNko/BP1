@@ -31,6 +31,8 @@ export class Transition implements Activable {
   firing: boolean;
   cols: number;
   offset: number;
+  heatMapFlag: boolean;
+  activationCount : number;
 
   data: GridsterDataField[];
 
@@ -68,26 +70,47 @@ export class Transition implements Activable {
     this.dataGroups = [];
     this.events = [];
     this.offset = 0;
+    this.heatMapFlag = false;
+    this.activationCount = 0;
   }
 
   activate(): void {
     if (this.objektyelementu !== undefined) {
-      this.objektyelementu.element.setAttributeNS(null, 'class', 'svg-active-stroke');
-      this.objektyelementu.menoelem.setAttributeNS(null, 'class', 'svg-active-fill');
-      this.objektyelementu.cancelArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-cancel-active');
-      this.objektyelementu.finishArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-finish-active');
+      if (this.heatMapFlag == false){
+        this.objektyelementu.element.setAttributeNS(null, 'class', 'svg-active-stroke');
+        this.objektyelementu.menoelem.setAttributeNS(null, 'class', 'svg-active-fill');
+        this.objektyelementu.cancelArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-cancel-active');
+        this.objektyelementu.finishArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-finish-active');
+      }
+      else {
+        //this.objektyelementu.element.setAttributeNS(null, 'class', 'svg-active-stroke');
+        this.objektyelementu.menoelem.setAttributeNS(null, 'class', 'svg-active-fill');
+        this.objektyelementu.cancelArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-cancel-active');
+        this.objektyelementu.finishArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-finish-active');
+      }
+
     }
     this.over = 1;
   }
 
   deactivate(): void {
     if (this.objektyelementu !== undefined) {
-      this.objektyelementu.element.setAttributeNS(null, 'class', 'svg-inactive-stroke');
-      this.objektyelementu.element.setAttributeNS(null, 'fill', 'white');
-      this.objektyelementu.element.setAttributeNS(null, 'stroke-width', '2');
-      this.objektyelementu.menoelem.setAttributeNS(null, 'class', 'svg-inactive-fill');
-      this.objektyelementu.cancelArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-cancel-inactive');
-      this.objektyelementu.finishArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-finish-inactive');
+      if (this.heatMapFlag == false){
+        this.objektyelementu.element.setAttributeNS(null, 'class', 'svg-inactive-stroke');
+        this.objektyelementu.element.setAttributeNS(null, 'fill', 'white');
+        this.objektyelementu.element.setAttributeNS(null, 'stroke-width', '2');
+        this.objektyelementu.menoelem.setAttributeNS(null, 'class', 'svg-inactive-fill');
+        this.objektyelementu.cancelArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-cancel-inactive');
+        this.objektyelementu.finishArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-finish-inactive');
+      }
+      else {
+        //this.objektyelementu.element.setAttributeNS(null, 'class', 'svg-inactive-stroke');
+        //this.objektyelementu.element.setAttributeNS(null, 'fill', 'white');
+        this.objektyelementu.element.setAttributeNS(null, 'stroke-width', '2');
+        this.objektyelementu.menoelem.setAttributeNS(null, 'class', 'svg-inactive-fill');
+        this.objektyelementu.cancelArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-cancel-inactive');
+        this.objektyelementu.finishArrow.setAttributeNS(null, 'class', 'svg-fire-arrow-finish-inactive');
+      }
     }
     this.over = 0;
   }
@@ -154,6 +177,8 @@ export class Transition implements Activable {
     // trans.dataGroups = this.dataGroups.map( item => item.clone());
     trans.events = this.events.map(item => item.clone());
     trans.offset = this.offset;
+    trans.heatMapFlag = this.heatMapFlag;
+    trans.activationCount = this.activationCount;
     return trans;
   }
 }

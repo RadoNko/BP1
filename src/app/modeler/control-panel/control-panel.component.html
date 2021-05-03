@@ -45,13 +45,7 @@
     </label>
   </button>
 
-  <!--OPEN .LOG-->
-  <button mat-icon-button class="button-line" matTooltip="Choose a LOG file to open." >
-    <input type="file" id="openLog" class="button--input" (change)="openLogModel($event)"/>
-    <label id="openLogButton" for="openLog">
-      <mat-icon svgIcon="open"></mat-icon>
-    </label>
-  </button>
+
 
   <!--SAVE AS XML-->
   <button mat-icon-button class="button-line" matTooltip="Save as an XML file." (click)="exportAsXML(1)">
@@ -243,5 +237,28 @@
       </mat-select>
     </mat-form-field>
   </div>
+
+  <div *ngIf="modeSelect === 'heatmap'">
+
+    <!--OPEN .LOG-->
+    <button mat-icon-button class="button-line" matTooltip="Choose a LOG file to open." >
+      <input type="file" id="openLog" class="button--input" (change)="openLogModel($event)"/>
+      <label id="openLogButton" for="openLog">
+        <mat-icon svgIcon="open"></mat-icon>
+      </label>
+    </button>
+
+    <!--  CRITERIA MENU-->
+    <button mat-icon-button class="toolbarButton button-line" [matMenuTriggerFor]="criteriaMenu" matTooltip="Select criteria by which heatmap should be created.">
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #criteriaMenu="matMenu">
+      <mat-radio-button id="criteria_task_count" checked>CRITERIA: Finished Task Count </mat-radio-button><br>
+      <mat-radio-button id="criteria_nan_1">CRITERIA: NaN </mat-radio-button><br>
+      <mat-radio-button id="criteria_nan_2">CRITERIA: NaN </mat-radio-button>
+    </mat-menu>
+
+  </div>
+
 </div>
 

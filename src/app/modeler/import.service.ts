@@ -54,6 +54,11 @@ export class ImportService {
     const file = event.target.files[0];
     this.originLogFile = this.HeatMapService.loadFile(file);
 
+    if (file != null){
+      //Presunuť do loadFile - http post
+      //this.HeatMapService.writeDataState();
+    }
+
   }
 
   parseXml(txt: string): Document {

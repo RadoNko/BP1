@@ -49,7 +49,7 @@ export class ModelService {
   transitionOffset: number;
   whichButton: BehaviorSubject<string>;
 
-  constructor(private exportService: ExportService, private importService: ImportService) {
+  constructor(private exportService: ExportService) {
     this.bod = new Point(0, 0);
     this.kresli_sa_hrana = 0;
     this.pocetmousedown = 0;

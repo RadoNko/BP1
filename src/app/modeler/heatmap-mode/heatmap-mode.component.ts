@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import {ModelService} from "../model.service";
 import {HeatmapModeService} from "./heatmap-mode.service";
 import {CanvasService} from "../canvas.service";
@@ -12,7 +12,7 @@ import {ElasticsearchService} from "./elasticsearch/elasticsearch.service";
   templateUrl: './heatmap-mode.component.html',
   styleUrls: ['./heatmap-mode.component.scss']
 })
-export class HeatmapModeComponent implements AfterViewInit {
+export class HeatmapModeComponent implements AfterViewInit,OnDestroy {
 
   @ViewChild('canvas') canvas: ElementRef;
 
@@ -30,7 +30,8 @@ export class HeatmapModeComponent implements AfterViewInit {
     this.canvasService.doMouseDown($event);
   }
 
-  ngAfterViewInit(): void {
+
+  ngAfterViewInit() {
     this.canvasService.canvas = new Canvas(this.canvas.nativeElement);
     this.canvasService.canvas.resize(this.modelService.appwidth, this.modelService.appheight);
 
@@ -42,10 +43,23 @@ export class HeatmapModeComponent implements AfterViewInit {
       if (this.modelService.model === undefined) {
         this.modelService.model = new Model();
       }
+
+
+      this.heatService.modelClone();
       this.canvasService.renderModel(this.modelService.model);
+
+
+
+
       this.reset('select');
+      //
+      //this.heatService.drawPallete();
+
     });
-    this.heatService.writeDataState();
+  }
+  ngOnDestroy () {
+    this.heatService.resetUniqueVariables()
+    //this.heatService.transitionDataSet = null;
   }
 
 

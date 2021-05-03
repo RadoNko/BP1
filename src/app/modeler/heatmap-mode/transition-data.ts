@@ -33,6 +33,6 @@ export class TransitionData {
         this._timestamp = value;
     }
     toString() : String{
-        return "TASK: "+this.task+" STATE: "+this.state+ " TIMESTAMP: "+this.timestamp
+        return "TASK: {"+this.task+"} STATE: {"+this.state+ "} TIMESTAMP: {"+this.timestamp+"}"
     }
 }

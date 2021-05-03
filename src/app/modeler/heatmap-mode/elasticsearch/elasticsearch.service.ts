@@ -8,6 +8,7 @@ import * as elasticsearch from 'elasticsearch-browser';
 export class ElasticsearchService {
   private client: Client;
   private queryalldocs = {
+    "size": 10000,
     'query': {
       "match": {
         "STATE": "finished"

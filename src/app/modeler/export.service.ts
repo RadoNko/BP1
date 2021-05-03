@@ -95,7 +95,7 @@ export class ExportService {
   }
 
   generateXml(model: Model, format: XmlFormat) {
-    this.xmlText = '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"' + '\">\n';
+    this.xmlText = '<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"' + '>\n';
     if (format === 2) {
       this.complexStart(0, 'subnet');
     }
